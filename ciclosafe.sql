@@ -2,7 +2,6 @@
 -- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
 -- Generation Time: 28-Ago-2019 às 19:19
 -- Versão do servidor: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
