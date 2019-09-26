@@ -2,7 +2,8 @@
 -- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Generation Time: 28-Ago-2019 às 19:19
+-- Host: 127.0.0.1
+-- Generation Time: 26-Set-2019 às 20:09
 -- Versão do servidor: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -42,7 +43,9 @@ CREATE TABLE `bike` (
 
 CREATE TABLE `cartao` (
   `uid_card` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL
+  `id_usuario` int(11) NOT NULL,
+  `codigo_cartao` varchar(12) COLLATE utf8_bin DEFAULT NULL,
+  `id_bike` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -78,7 +81,7 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id_usuario`, `nome`, `matricula`, `uid_card`, `id_bike`, `historico`) VALUES
 (1, 'ailton', 1, 1, 1, NULL),
-(5, 'muito boa noite', 12, 13, 14, NULL),
+(5, 'giovani', 12, 13, 14, NULL),
 (6, 'junior', 41543566, 34563, 34, NULL);
 
 --
@@ -97,7 +100,8 @@ ALTER TABLE `bike`
 --
 ALTER TABLE `cartao`
   ADD PRIMARY KEY (`uid_card`),
-  ADD KEY `user_id_idx` (`id_usuario`);
+  ADD KEY `user_id_idx` (`id_usuario`),
+  ADD KEY `id_bike_fk_idx` (`id_bike`);
 
 --
 -- Indexes for table `historico`
@@ -141,6 +145,7 @@ ALTER TABLE `bike`
 -- Limitadores para a tabela `cartao`
 --
 ALTER TABLE `cartao`
+  ADD CONSTRAINT `id_bike_fk` FOREIGN KEY (`id_bike`) REFERENCES `bike` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `id_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
