@@ -1,5 +1,5 @@
-//Programa : RFID - Controle de Acesso leitor RFID
-//Autor : EmanuelR. 
+//Programa : RFID - Controle de Acesso
+//Autor : Projeto Ciclosafe. 
  
 #include <SPI.h>
 #include <MFRC522.h>
@@ -35,14 +35,12 @@ void setup()
  }
 void loop() 
 {
-  // Look for new cards
-  if ( ! mfrc522.PICC_IsNewCardPresent()) 
-  {
+  // Procura por novos cartões
+  if ( ! mfrc522.PICC_IsNewCardPresent()){
     return;
   }
-  // Select one of the cards
-  if ( ! mfrc522.PICC_ReadCardSerial()) 
-  {
+  // Seleciona um dos cartões
+  if ( ! mfrc522.PICC_ReadCardSerial()){
     return;
   }
   //Mostra UID na serial
@@ -61,13 +59,13 @@ void loop()
   conteudo.toUpperCase();
   if (conteudo.substring(1) == "52 57 3A 1A") //UID 1 - Chaveiro
   {
-    Serial.println("SEJA BEM VINDO AO CICLOSAFE, SR EMANUEL RAIMUNDO!");
+    Serial.println("SEJA BEM VINDO AO CICLOSAFE, SR USUARIO!");
     Serial.println();
     lcd.clear();
     lcd.setCursor(4,0);
     lcd.print("BEM VINDO !");
     lcd.setCursor(4,1);
-    lcd.print("EMANUEL RAIMUNDO!");
+    lcd.print("USUARIO!");
     delay(3000);
     mensageminicial();
   }
